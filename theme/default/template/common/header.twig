@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+  <!--<![endif]-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{{ title }}</title>
+    {% if robots %}
+    <meta name="robots" content="{{ robots }}" />
+    {% endif %}
+    <base href="{{ base }}" />
+    {% if description %}
+    <meta name="description" content="{{ description }}" />
+    {% endif %} {% if keywords %}
+    <meta name="keywords" content="{{ keywords }}" />
+    {% endif %}
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ og_url }}" />
+    {% if og_image %}
+    <meta property="og:image" content="{{ og_image }}" />
+    {% else %}
+    <meta property="og:image" content="{{ logo }}" />
+    {% endif %}
+    <meta property="og:site_name" content="{{ name }}" />
+    <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="/catalog/view/theme/default/stylesheet/fonts/social-icons.css" rel="stylesheet" type="text/css" />
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
+    <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet" />
+    {% for style in styles %}
+    <link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+    {% endfor %} {% for script in scripts %}
+    <script src="{{ script }}" type="text/javascript"></script>
+    {% endfor %}
+    <script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+    {% for link in links %}
+    <link href="{{ link.href }}" rel="{{ link.rel }}" />
+    {% endfor %} {% for analytic in analytics %}
+    {{
+      analytic
+    }}
+    {% endfor %}
+  </head>
+  <body>
+    <nav id="top">
+      <div class="container">
+        <div class="header__nav">
+          <div class="col-sm-6 header__social hidden-xs">
+            <a href="#" class="icon-viber"></a>
+            <a href="#" class="icon-facebook"></a>
+            <a href="#" class="icon-instagram"></a>
+          </div>
+
+          <div class="col-sm-3 col-xs-4 text-nowrap">
+            <a href="{{ login }}">{{ text_delivery }}/{{ text_payment }}</a>
+          </div>
+          <div class="col-sm-1 hidden-sm hidden-xs">
+            {{ language }}
+          </div>
+          <div class="col-sm-2 col-xs-4 text-center header__login">
+            <a href="{{ login }}">
+              <span class="icon-login"></span>
+              <span class="hidden-sm">{{ text_login }}</span>
+            </a>
+          </div>
+          <div class="hidden-md hidden-lg phone col-xs-4">
+            <span data-toggle="dropdown" class="main-phone pull-right" aria-expanded="false">
+              <span>(066) 050-60-01</span>
+              <span class="fa fa fa-angle-down caretalt"></span>
+            </span>
+            <ul class="dropdown-menu allcontacts">
+              <li>
+                <a href="tel:+380962986579" class="onlydesktop">(096) 298-65-79 </a>
+              </li>
+              <li>
+                <a href="tel:+380992404991" class="onlydesktop">(099) 240-49-91 Опт </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <header>
+      <div class="container">
+        <div class="row header__top">
+          <div class="col-sm-6 col-xs-5 ultra-mini">
+            <div id="logo">
+              {% if logo %} {% if home == og_url %}
+              <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+              {% else %}
+              <a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+              {% endif %} {% else %}
+              <h1>
+                <a href="{{ home }}">{{ name }}</a>
+              </h1>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-sm-3 col-lg-5 hidden-xs">{{ search }}</div>
+          <div class="col-sm-3 col-xs-6 contacts-phones hidden-xs hidden-sm">
+            <div class="tel_tel"><a href="tel:+380660506001">(066) 050-60-01</a></div>
+            <div class="tel_tel"><a href="tel:+380962986579">(096) 298-65-79</a></div>
+            <div class="tel_tel text-nowrap"><a href="tel:+380992404991">(099) 240-49-91 Опт</a></div>
+          </div>
+          <div class="col-sm-6 col-xs-7 cartlogin">{{ cart }}</div>
+        </div>
+      </div>
+      <div class="container">
+        <nav id="menu" class="navbar hidden-xs header__bottom">
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="#">{{ text_home }}</a>
+              </li>
+              <li>
+                <a href="#">{{ text_prices }}</a>
+              </li>
+              <li>
+                <a href="#">{{ text_garden }}</a>
+              </li>
+              <li>
+                <a href="#">{{ text_delivery }}</a>
+              </li>
+              <li>
+                <a href="#">{{ text_planting }}</a>
+              </li>
+              <li>
+                <a href="#">{{ text_photos }}</a>
+              </li>
+              <li>
+                <a href="#">{{ text_contacts }}</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    {{ menu }}
+  </body>
+</html>

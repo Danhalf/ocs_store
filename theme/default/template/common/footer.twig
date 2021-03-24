@@ -1,0 +1,53 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      {% if informations %}
+      <div class="col-sm-3">
+        <h4>{{ text_information }}</h4>
+        <ul class="list-unstyled">
+         {% for information in informations %}
+          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      <div class="col-sm-3">
+        <h4>{{ text_contact }}</h4>
+        <ul class="list-unstyled">
+          <li><a href="{{ account }}">{{ text_account }}</a></li>
+          <li><a href="{{ order }}">{{ text_order }}</a></li>
+          <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+          <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-3">
+        <h4>{{ text_extra }}</h4>
+        <ul class="list-unstyled">
+          <li class="tel_tel"><a href="tel:+380660506001">(066) 050-60-01</a></li>
+          <li class="tel_tel"><a href="tel:+380504420728">(050) 442-07-28</a></li>
+          <li class="tel_tel"><a href="tel:+380962986579">(096) 298-65-79</a></li>
+          <li class="tel_tel"><a href="tel:+380636197755">(063) 619-77-5</a></li>
+          <li class="tel_tel text-nowrap"><a href="tel:+380992404991">(099) 240-49-91 Опт</a></li>
+          {# <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+          <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+          <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+          <li><a href="{{ special }}">{{ text_special }}</a></li> #}
+        </ul>
+      </div>
+      <div class="col-sm-3">
+        <h4>{{ text_service }}</h4>
+        <div class="footer__image"><img src="/catalog/view/theme/default/image/visa_mc.png" alt="Visa and MasterCard payments image"></div>
+      </div>
+    </div>
+    {# <hr> #}
+    {# <p>{{ powered }}</p> #}
+  </div>
+</footer>
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+</body></html>
