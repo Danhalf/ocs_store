@@ -9,17 +9,35 @@
   </ul>
   <div class="row">
     {{ column_left }}
-    {% if column_left and column_right %} {% set class = 'col-sm-6' %} {% elseif column_left or column_right %} {% set class = 'col-sm-9' %} {% else
+    {% if column_left and column_right %} {% set class = 'col-sm-6' %} {% elseif column_left or column_right %} {% set class = 'product  col-sm-9' %} {% else
     %} {% set class = 'col-sm-12' %} {% endif %}
     <div id="content" class="{{ class }}">
       {{ content_top }}
       <div class="row">
-        <div class="row">
-        <div class="col-xs-8 product__title"><h1>{{ heading_title }}</h1></div>
+        <div class="product__top">
         
-        <div class="col-xs-4 text-right">{{ text_model }} {{ model }}</div>
-      </div>
-        {% if column_left or column_right %} {% set class = 'col-sm-4' %} {% else %} {% set class = 'col-sm-8' %} {% endif %}
+          <div class="col-xs-9 product__title"><h1>{{ heading_title }}</h1></div>
+          
+          <div class="col-xs-3 text-nowrap text-right">
+            <span class="product__code">{{ text_model }} {{ model }}</span>
+          </div>
+          
+        </div>
+        <div class="product__additional">
+          {# {% if product.rating %} #}
+        <p>
+              {% for i in 1..5 %} 
+              {% if rating < i %}
+              {# <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span> #}
+              {% else %}
+              <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+              {% endif %} 
+              {% endfor %} 
+              <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ reviews }}</a>
+              {# <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ text_write }}</a> #}
+            </p>
+        </div>
+        {% if column_left or column_right %} {% set class = 'col-lg-4' %} {% else %} {% set class = 'col-lg-8' %} {% endif %}
         <div class="{{ class }}">
           {% if thumb or images %}
           <ul class="thumbnails">
@@ -37,7 +55,8 @@
             </li>
             {% endfor %} {% endif %}
           </ul>
-          {% endif %} {#
+          {% endif %} 
+          
           <ul class="nav nav-tabs">
             <li class="active">
               <a href="#tab-description" data-toggle="tab">{{ tab_description }}</a>
@@ -52,7 +71,7 @@
             </li>
             {% endif %}
           </ul>
-          #} {#
+          
           <div class="tab-content">
             <div class="tab-pane active" id="tab-description">{{ description }}</div>
             {% if attribute_groups %}
@@ -127,9 +146,9 @@
             </div>
             {% endif %}
           </div>
-          #}
+          
         </div>
-        {% if column_left or column_right %} {% set class = 'col-sm-8' %} {% else %} {% set class = 'col-sm-4' %} {% endif %}
+        {% if column_left or column_right %} {% set class = 'col-md-4' %} {% else %} {% set class = 'col-sm-4' %} {% endif %}
         <div class="{{ class }}">
           {# <div class="btn-group">
             <button
@@ -157,11 +176,11 @@
             <li>
               {{ text_manufacturer }} <a href="{{ manufacturers }}">{{ manufacturer }}</a>
             </li>
-            {% endif %} #}
+            {% endif %}
             <li>{{ text_model }} {{ model }}</li>
-            {# {% if reward %}
-            <li>{{ text_reward }} {{ reward }}</li> #}
-            {# {% endif %}
+            {% if reward %}
+            <li>{{ text_reward }} {{ reward }}</li> 
+            {% endif %}
             <li>{{ text_stock }} {{ stock }}</li> #}
           </ul>
 
@@ -369,13 +388,7 @@
           </div>
           {% if review_status %}
           <div class="rating">
-            <p>
-              {% for i in 1..5 %} {% if rating < i %}<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>{% else %}<span
-                class="fa fa-stack"
-                ><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span
-              >{% endif %} {% endfor %} <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ reviews }}</a> /
-              <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ text_write }}</a>
-            </p>
+            
             <hr />
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style" data-url="{{ share }}">
@@ -393,7 +406,7 @@
         <div class="product-description__text">{{ description }}</div>
       </div>
       {% if products %}
-      <h3>{{ text_related }}</h3>
+      <h3 class="underline">{{ text_related }}</h3>
       <div class="row">
         {% set i = 0 %} {% for product in products %} {% if column_left and column_right %} {% set class = 'col-xs-8 col-sm-6' %} {% elseif
         column_left or column_right %} {% set class = 'col-xs-6 col-md-4' %} {% else %} {% set class = 'col-xs-6 col-sm-3' %} {% endif %}
@@ -426,12 +439,13 @@
             </div>
             <div class="button-group">
               <button type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');">
-                <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span> <i class="fa fa-shopping-cart"></i>
+                <span >{{ button_cart }}</span> 
+                {# <i class="class="fa fa-shopping-cart"></i> #}
               </button>
-              <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');">
+              <button class="btn_hidden" type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');">
                 <i class="fa fa-heart"></i>
               </button>
-              <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');">
+              <button class="btn_hidden" type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');">
                 <i class="fa fa-exchange"></i>
               </button>
             </div>

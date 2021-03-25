@@ -23,6 +23,11 @@ function getURLVar(key) {
 }
 
 $(document).ready(function () {
+  $('.filter__btn').on('click', function () {
+    $('.fa-chevron-up i').removeClass('chevron-close');
+    $(this).find('i').toggleClass('chevron-close');
+  });
+
   // Dynamic cart information change
   const cartValue = document.querySelector('.cart-total');
 
